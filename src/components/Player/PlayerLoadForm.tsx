@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 export interface IPlayerLoadFormProps {
-  handleChangeUsername: (newName: string) => void 
-  setIsNameEditing: React.Dispatch<React.SetStateAction<boolean>>
+  loadPlayer: (name: string) => void 
+  setIsLoad: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const PlayerLoadForm = (props: IPlayerLoadFormProps) => {
@@ -10,15 +10,15 @@ export const PlayerLoadForm = (props: IPlayerLoadFormProps) => {
 
   const handleClickApproveNewNameBtn = () => {
     if (newName.length !== 0) {
-      props.handleChangeUsername(newName);
+      props.loadPlayer(newName);
     }
-    props.setIsNameEditing(false)
+    props.setIsLoad(false)
     setNewName('')
   }
 
   return (
     <form className='change-name-form cool-shadow' onSubmit={handleClickApproveNewNameBtn}>  
-      <p className='label small'>Введите новое имя:</p>  
+      <p className='label small'>Введите имя:</p>  
 
       <div className='content'>
         <input type="text" 
@@ -30,7 +30,7 @@ export const PlayerLoadForm = (props: IPlayerLoadFormProps) => {
       <div className='btn-container'>
         <button type="button"
           className='btn close'
-          onClick={() => props.setIsNameEditing(false)}
+          onClick={() => props.setIsLoad(false)}
         >
           Закрыть
         </button>

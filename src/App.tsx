@@ -3,7 +3,7 @@ import PlayerCard from './components/PlayerCard';
 
 
 const App = () => {
-  const [username, setUsername] = useState('RUKUYS')
+  const [username, setUsername] = useState('')
 
   const handleChangeUsername = (newName: string) : void => {    
     setUsername(newName);

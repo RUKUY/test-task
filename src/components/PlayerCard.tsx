@@ -5,6 +5,7 @@ import { ILoadCharacteristics, useCharacteristics } from '../services/Characteri
 import PlayerMenuRightSide from './Player/PlayerMenuRightSide';
 import { PlayerChangeNameForm } from './Player/PlayerChangeNameForm';
 import { IAbility } from '../services/Abilities/config';
+import { PlayerLoadForm } from './Player/PlayerLoadForm';
 
 interface IPlayerCardProps {
   username: string
@@ -18,7 +19,7 @@ interface ISavePlayer {
 }
 
 const PlayerCard = (props : IPlayerCardProps) => { 
-  const [isNameEditing, setIsNameEditing] = useState(false)
+  const [isNameEditing, setIsNameEditing] = useState(true)
   const [isLoad, setIsLoad] = useState(false)
   
   const { 
@@ -41,14 +42,14 @@ const PlayerCard = (props : IPlayerCardProps) => {
       characteristics: [mutableCharacteristics, immutableCharacteristics],
       abilities: abilities
     }
-    localStorage.setItem(`last`, JSON.stringify(dataToSave));
+    localStorage.setItem(`player ${props.username}`, JSON.stringify(dataToSave));
     alert('Персонаж успешно сохранен!')
   }
-  const loadPlayer = (): void => {
-    const loadedData : ISavePlayer = JSON.parse(localStorage.getItem('last')!)
+  const loadPlayer = (name : string): void => {
+    const loadedData : ISavePlayer = JSON.parse(localStorage.getItem(`player ${name}`)!)
     
     if (!loadedData) {
-      alert('Предыдущее сохранение отсутствует')
+      alert('Персонаж с таким именем отсутствует!')
       return;
     }
 
@@ -65,6 +66,11 @@ const PlayerCard = (props : IPlayerCardProps) => {
             handleChangeUsername={props.handleChangeUsername}
             setIsNameEditing={setIsNameEditing}
           />
+        ) : (isLoad) ? (
+          <PlayerLoadForm 
+            setIsLoad={setIsLoad}
+            loadPlayer={loadPlayer}
+          />
         ) : (
           <div className='content-containter cool-shadow'> 
             <PlayerAvatar
@@ -73,7 +79,7 @@ const PlayerCard = (props : IPlayerCardProps) => {
               setIsNameEditing={setIsNameEditing}
               mutableCharacteristics={mutableCharacteristics} 
               savePlayer={savePlayer}
-              loadPlayer={loadPlayer}
+              setIsLoad={setIsLoad}
             />
             <PlayerMenuRightSide 
               mutableCharacteristics={mutableCharacteristics} 

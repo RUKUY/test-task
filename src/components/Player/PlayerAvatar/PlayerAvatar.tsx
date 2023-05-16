@@ -12,7 +12,7 @@ export interface IPlayerAvatarProps {
   setIsNameEditing: React.Dispatch<React.SetStateAction<boolean>>
   mutableCharacteristics: ICharacteristic[]
   savePlayer: () => void
-  loadPlayer: () => void
+  setIsLoad: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const PlayerAvatar = (props: IPlayerAvatarProps) => {
@@ -33,7 +33,7 @@ export const PlayerAvatar = (props: IPlayerAvatarProps) => {
         <button id='save-btn' className='btn small transp' onClick={props.savePlayer} title='Сохранить персонажа'>
           <i className="fa-solid fa-floppy-disk"></i>
         </button>
-        <button id='save-btn' className='btn small transp' onClick={props.loadPlayer} title='Загрузить персонажа'>
+        <button id='save-btn' className='btn small transp' onClick={() => props.setIsLoad(true)} title='Загрузить персонажа'>
           <i className="fa-solid fa-file-import"></i>
         </button>
       </div>
