@@ -15,7 +15,7 @@ interface IPlayerCardProps {
 
 
 const PlayerCard = (props : IPlayerCardProps) => { 
-  const [isNameEditing, setIsNameEditing] = useState(false)
+  const [isNameEditing, setIsNameEditing] = useState(true)
   const [isLoaded, setIsLoaded] = useState(false)
   
   const { exportPlayer, importPlayer } = useImportExport()
@@ -39,8 +39,8 @@ const PlayerCard = (props : IPlayerCardProps) => {
     if (!!savedPlayer) {
       loadPlayerFromLocalStorage();
       setIsNameEditing(false);
-      setIsLoaded(true);
     }
+    setIsLoaded(true);
   }, [])
   
 
@@ -98,37 +98,36 @@ const PlayerCard = (props : IPlayerCardProps) => {
   return (
     <>
       {
-        isNameEditing ? (
-          <PlayerChangeNameForm
-            handleChangeUsername={props.handleChangeUsername}
-            setIsNameEditing={setIsNameEditing}
-          />
-        ) : (!isLoaded) ? '' : (
-          <div className='content-containter cool-shadow'> 
-            <PlayerAvatar
-              username={ props.username } 
+        (!isLoaded) ? '' :
+          (isNameEditing) ? (
+            <PlayerChangeNameForm
               handleChangeUsername={props.handleChangeUsername}
               setIsNameEditing={setIsNameEditing}
-              mutableCharacteristics={mutableCharacteristics} 
-              savePlayer={savePlayer}
-              handleExport={handleExport}
-              handleFileUpload={handleFileUpload}
             />
-            <PlayerMenuRightSide 
-              mutableCharacteristics={mutableCharacteristics} 
-              immutableCharacteristics={immutableCharacteristics}
-              upMutableCharacteristic={upMutableCharacteristic}
-              downMutableCharacteristic={downMutableCharacteristic}
-              abilities={abilities}
-              castAbility={castAbility}
-            />
-            <div className='fixed-panel'>
-              <button className='btn' onClick={() => takeDamage(1)}>Ударить</button>
+            ) : (
+            <div className='content-containter cool-shadow'> 
+              <PlayerAvatar
+                username={ props.username } 
+                handleChangeUsername={props.handleChangeUsername}
+                setIsNameEditing={setIsNameEditing}
+                mutableCharacteristics={mutableCharacteristics} 
+                savePlayer={savePlayer}
+                handleExport={handleExport}
+                handleFileUpload={handleFileUpload}
+              />
+              <PlayerMenuRightSide 
+                mutableCharacteristics={mutableCharacteristics} 
+                immutableCharacteristics={immutableCharacteristics}
+                upMutableCharacteristic={upMutableCharacteristic}
+                downMutableCharacteristic={downMutableCharacteristic}
+                abilities={abilities}
+                castAbility={castAbility}
+              />
+              <div className='fixed-panel'>
+                <button className='btn' onClick={() => takeDamage(1)}>Ударить</button>
+              </div>
             </div>
-
-          </div>
-        )
-        
+            ) 
       }
     </>
   );
