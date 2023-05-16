@@ -1,27 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PlayerAvatar } from './Player/PlayerMenu';
 import { useAbilities } from '../services/Abilities/Abilities';
-import { ILoadCharacteristics, useCharacteristics } from '../services/Characteristics';
+import { useCharacteristics } from '../services/Characteristics';
 import PlayerMenuRightSide from './Player/PlayerMenuRightSide';
 import { PlayerChangeNameForm } from './Player/PlayerChangeNameForm';
-import { IAbility } from '../services/Abilities/config';
-import { PlayerLoadForm } from './Player/PlayerLoadForm';
+import { ISavePlayer, useImportExport } from '../services/ImportExport';
 
 interface IPlayerCardProps {
   username: string
   handleChangeUsername: (newName: string) => void
 }
 
-interface ISavePlayer {
-  username: string
-  characteristics: ILoadCharacteristics,
-  abilities: IAbility[],
-}
+
+
 
 const PlayerCard = (props : IPlayerCardProps) => { 
-  const [isNameEditing, setIsNameEditing] = useState(true)
-  const [isLoad, setIsLoad] = useState(false)
+  const [isNameEditing, setIsNameEditing] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
   
+  const { exportPlayer, importPlayer } = useImportExport()
   const { 
     mutableCharacteristics, 
     immutableCharacteristics, 
@@ -36,17 +33,36 @@ const PlayerCard = (props : IPlayerCardProps) => {
     loadAbilities,
   } = useAbilities()
 
-  const savePlayer = (): void => {
-    const dataToSave: ISavePlayer = {
-      username: props.username,
-      characteristics: [mutableCharacteristics, immutableCharacteristics],
-      abilities: abilities
+
+  useEffect(() => {
+    let savedPlayer : string | null = localStorage.getItem('savedPlayer') 
+    if (!!savedPlayer) {
+      loadPlayerFromLocalStorage();
+      setIsNameEditing(false);
+      setIsLoaded(true);
     }
-    localStorage.setItem(`player ${props.username}`, JSON.stringify(dataToSave));
+  }, [])
+  
+
+  const savePlayer = (save?: ISavePlayer): void => {
+    let dataToSave: ISavePlayer; 
+    if (!!save) {
+      dataToSave = save 
+    }
+    else {
+      dataToSave = {
+        username: props.username,
+        characteristics: [mutableCharacteristics, immutableCharacteristics],
+        abilities: abilities
+      }
+    }
+    
+    localStorage.setItem(`savedPlayer`, JSON.stringify(dataToSave));
     alert('Персонаж успешно сохранен!')
   }
-  const loadPlayer = (name : string): void => {
-    const loadedData : ISavePlayer = JSON.parse(localStorage.getItem(`player ${name}`)!)
+
+  const loadPlayerFromLocalStorage = (): void => {
+    const loadedData : ISavePlayer = JSON.parse(localStorage.getItem(`savedPlayer`)!)
     
     if (!loadedData) {
       alert('Персонаж с таким именем отсутствует!')
@@ -57,6 +73,27 @@ const PlayerCard = (props : IPlayerCardProps) => {
     loadCharacteristics(loadedData.characteristics);
     loadAbilities(loadedData.abilities);
   }
+  
+  const handleExport = () : void => {
+    const dataToExport: ISavePlayer = {
+      username: props.username,
+      characteristics: [mutableCharacteristics, immutableCharacteristics],
+      abilities: abilities
+    }
+    exportPlayer(dataToExport)
+  }
+
+  function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (file) {
+      const player = importPlayer(file).then(el => {
+        if (el) {
+          savePlayer(el);
+          loadPlayerFromLocalStorage(); 
+        }
+      });
+    }
+  }
 
   return (
     <>
@@ -66,12 +103,7 @@ const PlayerCard = (props : IPlayerCardProps) => {
             handleChangeUsername={props.handleChangeUsername}
             setIsNameEditing={setIsNameEditing}
           />
-        ) : (isLoad) ? (
-          <PlayerLoadForm 
-            setIsLoad={setIsLoad}
-            loadPlayer={loadPlayer}
-          />
-        ) : (
+        ) : (!isLoaded) ? '' : (
           <div className='content-containter cool-shadow'> 
             <PlayerAvatar
               username={ props.username } 
@@ -79,7 +111,8 @@ const PlayerCard = (props : IPlayerCardProps) => {
               setIsNameEditing={setIsNameEditing}
               mutableCharacteristics={mutableCharacteristics} 
               savePlayer={savePlayer}
-              setIsLoad={setIsLoad}
+              handleExport={handleExport}
+              handleFileUpload={handleFileUpload}
             />
             <PlayerMenuRightSide 
               mutableCharacteristics={mutableCharacteristics} 
@@ -89,28 +122,14 @@ const PlayerCard = (props : IPlayerCardProps) => {
               abilities={abilities}
               castAbility={castAbility}
             />
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '100%',
-                maxWidth: '200px',
-                height: '60px',
-                position: 'fixed',
-                bottom: '0',
-                backgroundColor: 'red',
-              }}
-            >
+            <div className='fixed-panel'>
               <button className='btn' onClick={() => takeDamage(1)}>Ударить</button>
             </div>
 
           </div>
         )
+        
       }
-      
-
-      
     </>
   );
 }

@@ -32,7 +32,10 @@ const PlayerMenuRightSide = (props : IPlayerMenuRightSideProps) => {
       <hr></hr>
 
       <div className='label-container'>
-        <span className='label'>Способности</span>
+        <span className='label'>
+          Способности
+          <div id='info-holder' title='Кликните по способности для прокачки'><i className="fa-solid fa-info "></i></div>
+        </span>
       </div>
       <PlayerAbilities
         abilities={props.abilities}

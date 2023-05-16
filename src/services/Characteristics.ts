@@ -49,10 +49,13 @@ export const useCharacteristics = () => {
     }
 
     const takeDamage = (damage: number): boolean => {
-        if (immutableCharacteristics[0].state > 0) {
+        if (immutableCharacteristics[0].state > 1) {
             console.log(`Вы получили ${damage} ед. урона`);
             _downImmutableCharacteristics([1]);
             return true; 
+        }
+        else {
+            alert('HEROES NEVER DIE!')
         }
         return false;
     }
