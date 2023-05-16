@@ -12,6 +12,7 @@ interface IPlayerAbilitiesItemProps {
 
 const PlayerAbilitiesItem = (props: IPlayerAbilitiesItemProps) => {
   let image = require('../../../assets/icons/' + props.ability.icon)
+  let connectedCharacteristic : ICharacteristic = props.characteristics.find(el => el.id === props.ability.dependsOn)!;
 
   const handleClickAbility = () => {
     props.castAbility(props.ability.id, props.characteristics)
@@ -28,7 +29,11 @@ const PlayerAbilitiesItem = (props: IPlayerAbilitiesItemProps) => {
           <p className='skill-info-helptext'>
             {
               (props.ability.level === maxAbilityLevel) ? 
-                'Max' : `Кликов до следующего уровня: ${ useToLevelUp[props.ability.level + 1] - props.ability.expirience}`
+                'Max' : 
+                (props.ability.level < connectedCharacteristic.state) ? 
+                  `Кликов до следующего уровня: ${ useToLevelUp[props.ability.level + 1] - props.ability.expirience}` :
+                  `Параметр ${connectedCharacteristic.name} не достаточно прокачен` 
+                
             }
             </p>
         </div>

@@ -1,3 +1,9 @@
+
+@font-face {
+    font-family: 'Fritz Quadrata Cyrillic';
+    src: url('../src/assets/fonts/fritz-quadrata-cyrillic.ttf');
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -461,7 +467,6 @@ i {
     
     .half-container.characteristics {
         border-radius: 0px 0px 15px 15px;
+        max-height: 600px;
     }
-    
-    
 }
