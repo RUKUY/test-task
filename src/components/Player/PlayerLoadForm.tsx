@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-export interface IPlayerChangeNameFormProps {
+export interface IPlayerLoadFormProps {
   handleChangeUsername: (newName: string) => void 
   setIsNameEditing: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const PlayerChangeNameForm = (props: IPlayerChangeNameFormProps) => {
+export const PlayerLoadForm = (props: IPlayerLoadFormProps) => {
   const [newName, setNewName] = useState('')
 
   const handleClickApproveNewNameBtn = () => {
@@ -35,7 +35,7 @@ export const PlayerChangeNameForm = (props: IPlayerChangeNameFormProps) => {
           Закрыть
         </button>
         
-        <button type="submit" className='btn submit'>Подтвердить</button>
+        <button type="submit" className='btn submit'>Загрузить</button>
       </div>  
     </form>
   );

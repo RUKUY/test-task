@@ -7,7 +7,7 @@ interface PlayerCharacteristicsItemProps {
   upMutableCharacteristic: (id: number) => void
   downMutableCharacteristic: (id: number) => void
 
-  isEditing?: boolean,
+  isEditing: boolean,
 }
 
 const PlayerCharacteristicsItem = (props: PlayerCharacteristicsItemProps) => {
@@ -22,13 +22,21 @@ const PlayerCharacteristicsItem = (props: PlayerCharacteristicsItemProps) => {
   return (
     <div className='item'>
       <div className="left-side">
-        {/* <img className="icon" src="./assets/img/strength.png" alt="" srcset=""> */}
         <span>{ props.characteristic.name }:</span>
       </div>
-      <div className="right-side">
-        <button type="button" onClick={minusCharacteristic}>-</button>
-        <span style={{ margin: '0px 5px' }}>{ props.characteristic.state }</span>
-        <button type="button" onClick={plusCharacteristic}>+</button>
+      
+      <div className="right-side" style={{ justifyContent: (props.isEditing) ? '' : 'end' }}>
+        <button type="button" onClick={minusCharacteristic} style={{ display: (props.isEditing) ? '' : 'none'}}>
+          <i className="fa-solid fa-minus"></i>
+        </button>
+
+        <span className="text-dark-red" style={{ margin: '0px 5px'}}>
+            { props.characteristic.state }
+          </span>
+
+        <button type="button" onClick={plusCharacteristic} style={{ display: (props.isEditing) ? '' : 'none'}}>
+          <i className="fa-solid fa-plus"></i>
+        </button>
       </div>
     </div>
   )

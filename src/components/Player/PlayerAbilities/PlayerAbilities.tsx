@@ -11,8 +11,6 @@ export interface IPlayerAbilitiesProps {
 }
 
 export const PlayerAbilities = (props: IPlayerAbilitiesProps) => {
-  console.log(props.abilities);
-
   return (
       <div className='content scrolled'>
 

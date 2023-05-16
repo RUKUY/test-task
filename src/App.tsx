@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import PlayerCard from './components/PlayerCard';
-import { PlayerChangeNameForm } from './components/Player/PlayerChangeNameForm';
 
 
 const App = () => {
-  const [username, setUsername] = useState('')
-  const [isNameEditing, setIsNameEditing] = useState(true)
+  const [username, setUsername] = useState('RUKUYS')
 
   const handleChangeUsername = (newName: string) : void => {    
     setUsername(newName);
@@ -13,20 +11,10 @@ const App = () => {
 
   return (
     <div className='app'>
-      { 
-        (isNameEditing || !username) ? (
-          <PlayerChangeNameForm 
-            handleChangeUsername={handleChangeUsername}
-            setIsNameEditing={setIsNameEditing}
-          />
-        ) : (
-          <PlayerCard 
-            username={username}
-            handleChangeUsername={handleChangeUsername}
-            setIsNameEditing={setIsNameEditing}
-          />
-        ) 
-      }
+      <PlayerCard 
+        username={username}
+        handleChangeUsername={handleChangeUsername}
+      />
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { ICharacteristic } from '../config';
 export const useAbilities = () => {
     const [abilities, setAbilities] = useState(defaultAbilities);
 
-    const castAbility = (id: number, characteristics: ICharacteristic[]) => {
+    const castAbility = (id: number, characteristics: ICharacteristic[]) : void => {
         let skill : IAbility | undefined = abilities.find((el : IAbility) => el.id === id)
         if (!!skill) {
             let depenceChar : ICharacteristic | undefined = characteristics.find((el : ICharacteristic )=> el.id === skill?.dependsOn)
@@ -18,7 +18,7 @@ export const useAbilities = () => {
         console.log(`Способность ${skill?.name} применена`);
     }
 
-    const upAbility = (skill : IAbility) => {
+    const upAbility = (skill : IAbility) : void => {
         skill.expirience++;
         if ( (skill.expirience === useToLevelUp[skill.level + 1]) && (skill.level < maxAbilityLevel) ) {
             skill.expirience = 0;
@@ -35,12 +35,17 @@ export const useAbilities = () => {
         }))
     }
 
-    const downAbility = (skill : IAbility) => {
+    const downAbility = (skill : IAbility) : void => {
         
     }
+
+    const loadAbilities = (abilities : IAbility[]) : void => {
+        setAbilities(abilities)
+    } 
 
     return { 
         abilities,
         castAbility,
+        loadAbilities
     };
 }

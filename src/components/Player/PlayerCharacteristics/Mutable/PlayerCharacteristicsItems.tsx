@@ -6,6 +6,8 @@ interface IPlayerCharacteristicsItemsProps {
   characteristics: ICharacteristic[],
   upMutableCharacteristic: (id: number) => void
   downMutableCharacteristic: (id: number) => void
+
+  isEditing: boolean
 }
 
 const PlayerCharacteristicsItems = (props: IPlayerCharacteristicsItemsProps) => {
@@ -20,6 +22,7 @@ const PlayerCharacteristicsItems = (props: IPlayerCharacteristicsItemsProps) => 
               characteristic={elem}
               upMutableCharacteristic={props.upMutableCharacteristic}
               downMutableCharacteristic={props.downMutableCharacteristic}
+              isEditing={props.isEditing}
             />
           )
         })

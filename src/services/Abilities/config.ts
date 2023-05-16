@@ -5,6 +5,7 @@ export interface IAbility {
     level: number,
     dependsOn: number,
     expirience: number, 
+    icon: string,
 }
 
 export interface IUseToLevelUp {
@@ -28,6 +29,7 @@ export const defaultAbilities: IAbility[] = [
         level: 0,
         dependsOn: 1,
         expirience: 0,
+        icon: 'attack.png'
     },
     {
         id: 2,
@@ -35,6 +37,7 @@ export const defaultAbilities: IAbility[] = [
         level: 0,
         dependsOn: 2,
         expirience: 0,
+        icon: 'stealth.png'
     },
     {
         id: 3,
@@ -42,6 +45,7 @@ export const defaultAbilities: IAbility[] = [
         level: 0,
         dependsOn: 2,
         expirience: 0,
+        icon: 'archery.png'
     },
     {
         id: 4,
@@ -49,6 +53,7 @@ export const defaultAbilities: IAbility[] = [
         level: 0,
         dependsOn: 3,
         expirience: 0,
+        icon: 'educability.png'
     },
     {
         id: 5,
@@ -56,6 +61,7 @@ export const defaultAbilities: IAbility[] = [
         level: 0,
         dependsOn: 3,
         expirience: 0,
+        icon: 'survival.png'
     },
     {
         id: 6,
@@ -63,6 +69,7 @@ export const defaultAbilities: IAbility[] = [
         level: 0,
         dependsOn: 3,
         expirience: 0,
+        icon: 'medic.png'
     },
     {
         id: 7,
@@ -70,6 +77,7 @@ export const defaultAbilities: IAbility[] = [
         level: 0,
         dependsOn: 4,
         expirience: 0,
+        icon: 'fear.png'
     },
     {
         id: 8,
@@ -77,6 +85,7 @@ export const defaultAbilities: IAbility[] = [
         level: 0,
         dependsOn: 4,
         expirience: 0,
+        icon: 'insight.png'
     },
     {
         id: 9,
@@ -84,6 +93,7 @@ export const defaultAbilities: IAbility[] = [
         level: 0,
         dependsOn: 4,
         expirience: 0,
+        icon: 'look.png'
     },
     {
         id: 10,
@@ -91,7 +101,6 @@ export const defaultAbilities: IAbility[] = [
         level: 0,
         dependsOn: 4,
         expirience: 0,
+        icon: 'manipulate.png'
     }
 ]
-
-

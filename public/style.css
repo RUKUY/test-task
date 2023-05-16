@@ -5,6 +5,14 @@
     font-family: 'Fritz Quadrata Cyrillic', arial;
 }
 
+hr {
+    width: 100%;
+}
+
+.d-none {
+    display: none;
+}
+
 .app {
     display: flex;
     align-items: center;
@@ -47,19 +55,54 @@
 
     padding: 10px;
 
-    color: #202020;
-    background-color: #fff;
+    color: #46494C;
+    background-color: #DCDCDD;
 }
 
 .half-container.avatar {
-    border-right: 1px rgb(219, 219, 219) solid;
+    border-right: 1px #b8b8b8 solid;
     border-radius: 15px 0px 0px 15px;
 }
 
-.avatar .player-avatar {
-    height: 400px;
+#save-btn {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    background-color: brown;
+    padding: 3px;
+    width: 22px;
+    height: 22px;
+}
+
+.avatar-top {
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    height: 25px;
+
+    margin: 5px 0px;
+    padding: 0px 5px;
+}
+
+.half-container.avatar .label-container {
+    flex: 1 1 0;
+}
+
+.half-container.avatar .label-container span {
+    margin-right: 7px;
+}
+
+.avatar .player-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 400px;
+}
+
+.avatar .player-avatar img {
+    height: 400px;
 }
 
 .label {
@@ -113,6 +156,9 @@
 .items.mut .item {
     display: flex;
     justify-content: space-between;
+
+    min-height: 36px;
+
     padding: 8px 25px;
 }
 
@@ -134,21 +180,25 @@
 }
 
 .items.mut .right-side button {
-    width: 20px;
-    height: 20px;
-    border: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
+
+    width: 20px;
+    height: 20px;
+    
+    color: white;
+    border: 0px;
+    background-color: #4C5C68;
+    font-size: 10px;
 }
 
 .items.mut .right-side button:hover {
-    background-color: #e2e2e2;
+    background-color: #49535A;
     cursor: pointer;
 }
 .items.mut .right-side button:active {
-    background-color: #bbbbbb;
+    background-color: #424d55;
 }
 
 .half-container.characteristics {
@@ -186,7 +236,7 @@
     flex-direction: column;
     border-radius: 8px;
 
-    background-color: #ebebeb;
+    background-color: #C5C3C6;
 }
 
 .items.skills .item {
@@ -204,7 +254,7 @@
 }
 
 .items.skills .item:hover {
-    background-color: #cacaca;
+    background-color: #bdbdbd;
 }
 
 .items.skills .left-side {
@@ -214,18 +264,22 @@
 }
 
 .items.skills .left-side span {
-   color: #000000;
+   color: #9F4F4F;
 }
 
 .items.skills .left-side span:hover {
-   color: #b19519;
+   color: #F24236;
 }
 
 .items.skills .img-holder {
     width: 40px;
     height: 40px;
     background-color: #d5e482;
+    border: 2px solid;
     margin-right: 10px;
+}
+.items.skills .img-holder img {
+    width: 100%;
 }
 
 .items.skills .right-side span {
@@ -271,6 +325,11 @@
     padding: 0px 10px;
 }
 
+.abilities .btn-container {
+    padding: 0px 25px;
+    justify-content: end;
+}
+
 .change-name-form .btn {
     padding: 5px 7px;
     
@@ -279,24 +338,59 @@
     cursor: pointer;
 }
 
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
 .btn.submit {
-    background-color: #8ddd6d;
+    color: #fff;
+    background-color: #0DAB76;
 }
 .btn.submit:hover {
-    background-color: #80d160;
+    background-color: #099b6a;
 }
 .btn.submit:active {
-    background-color: #6fc04f;
+    background-color: #118a61;
 }
 
 .btn.close {
-    background-color: #f55f5f;
+    color: #fff;
+    background-color: #ED474A;
 }
 .btn.close:hover {
-    background-color: #e95151;
+    background-color: #e03e41;
 }
 .btn.close:active {
-    background-color: #d64343;
+    background-color: #c03437;
+}
+
+.btn.small {
+    font-size: 12px;
+    border: 0px;
+    border-radius: 4px;
+    padding: 3px;
+
+    width: 20px;
+    height: 20px;
+}
+
+.btn.transp {
+    border-radius: 4px;
+    background-color: #DCDCDD;
+}
+
+.btn.transp:hover {
+
+    background-color: #bdbdbd;
+}
+
+
+.text-dark-red {
+    color: #9F4F4F;
 }
 
 @media (max-width: 650px) {
@@ -308,7 +402,7 @@
 
     .half-container.avatar {
         border-right: none;
-        border-bottom: 1px #dbdbdb solid;
+        border-bottom: 1px #b8b8b8 solid;
         border-radius: 15px 15px 0px 0px;
     }
     

@@ -10,7 +10,7 @@ const PlayerImmutableCharacteristicsItem = (props: IPlayerImmutableCharacteristi
   return (
     <div className="item">
       <p>{ props.characteristic.name }</p>
-      <p style={{ color: 'red' }}>{ props.characteristic.state }</p>
+      <p className="text-dark-red">{ props.characteristic.state }</p>
     </div>
   )
 }

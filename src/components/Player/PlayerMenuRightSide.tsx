@@ -14,20 +14,14 @@ interface IPlayerMenuRightSideProps {
     castAbility: (id: number, characteristics: ICharacteristic[]) => void
 }
 
-const enum EnumRightMenu {
-  Characteristics,
-  Abilities,
-}
-
 const PlayerMenuRightSide = (props : IPlayerMenuRightSideProps) => { 
-  const [rightMenu, setRightMenu] = useState(EnumRightMenu.Characteristics)
 
   return (
-    <div className={'half-container ' + ((rightMenu) ? 'abilities' : 'characteristics')}>
+    <div className='half-container abilities characteristics'>
+      
       <div className='label-container'>
         <span className='label'>Характеристики</span>
       </div>
-
       <PlayerCharacteristics 
         mutableCharacteristics={props.mutableCharacteristics} 
         immutableCharacteristics={props.immutableCharacteristics}
@@ -35,7 +29,7 @@ const PlayerMenuRightSide = (props : IPlayerMenuRightSideProps) => {
         downMutableCharacteristic={props.downMutableCharacteristic}
       /> 
 
-      <hr style={{backgroundColor: 'grey', width: '100%', }}></hr>
+      <hr></hr>
 
       <div className='label-container'>
         <span className='label'>Способности</span>
@@ -45,6 +39,7 @@ const PlayerMenuRightSide = (props : IPlayerMenuRightSideProps) => {
         castAbility={props.castAbility}
         characteristics={props.mutableCharacteristics}
       />
+
     </div>
   );
 }
