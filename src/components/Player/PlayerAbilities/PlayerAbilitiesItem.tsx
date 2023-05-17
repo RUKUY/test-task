@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import { IAbility, maxAbilityLevel, useToLevelUp } from '../../../services/Abilities/config'
-import { ICharacteristic } from '../../../services/config'
+import { IAbility, maxAbilityLevel, useToLevelUp } from '../../../hooks/Abilities/config'
+import { ICharacteristic } from '../../../hooks/Characteristics/config'
 
 
 interface IPlayerAbilitiesItemProps {
@@ -32,7 +31,7 @@ const PlayerAbilitiesItem = (props: IPlayerAbilitiesItemProps) => {
                 'Max' : 
                 (props.ability.level < connectedCharacteristic.state) ? 
                   `Кликов до следующего уровня: ${ useToLevelUp[props.ability.level + 1] - props.ability.expirience}` :
-                  `Параметр ${connectedCharacteristic.name} не достаточно прокачен` 
+                  `Параметр ${connectedCharacteristic.name} недостаточно прокачен` 
                 
             }
             </p>

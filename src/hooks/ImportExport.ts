@@ -1,6 +1,5 @@
-import { useState } from "react"
 import { IAbility } from "./Abilities/config"
-import { ILoadCharacteristics } from "./Characteristics"
+import { ILoadCharacteristics } from "./Characteristics/Characteristics"
 
 
 export interface ISavePlayer {

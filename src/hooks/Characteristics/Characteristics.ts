@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ICharacteristic, ICharacteristicWithSubs, defaultCharacteristics, indirectCharacteristics } from './config';
 
 export interface ILoadCharacteristics { 

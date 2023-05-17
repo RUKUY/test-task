@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { PlayerAvatar } from './Player/PlayerMenu';
-import { useAbilities } from '../services/Abilities/Abilities';
-import { useCharacteristics } from '../services/Characteristics';
+import { useAbilities } from '../hooks/Abilities/Abilities';
+import { useCharacteristics } from '../hooks/Characteristics/Characteristics';
 import PlayerMenuRightSide from './Player/PlayerMenuRightSide';
 import { PlayerChangeNameForm } from './Player/PlayerChangeNameForm';
-import { ISavePlayer, useImportExport } from '../services/ImportExport';
+import { ISavePlayer, useImportExport } from '../hooks/ImportExport';
 
 interface IPlayerCardProps {
   username: string
   handleChangeUsername: (newName: string) => void
 }
-
-
-
 
 const PlayerCard = (props : IPlayerCardProps) => { 
   const [isNameEditing, setIsNameEditing] = useState(true)

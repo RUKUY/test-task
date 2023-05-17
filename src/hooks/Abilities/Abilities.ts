@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { IAbility, defaultAbilities, maxAbilityLevel, useToLevelUp } from './config';
-import { ICharacteristic } from '../config';
+import { ICharacteristic } from '../Characteristics/config';
 
 
 export const useAbilities = () => {
@@ -33,10 +33,6 @@ export const useAbilities = () => {
             }
             return el;
         }))
-    }
-
-    const downAbility = (skill : IAbility) : void => {
-        
     }
 
     const loadAbilities = (abilities : IAbility[]) : void => {

@@ -1,7 +1,6 @@
-import React from 'react';
-import { IAbility } from '../../../services/Abilities/config';
+import { IAbility } from '../../../hooks/Abilities/config';
 import PlayerAbilitiesItems from './PlayerAbilitiesItems';
-import { ICharacteristic } from '../../../services/config';
+import { ICharacteristic } from '../../../hooks/Characteristics/config';
 
 export interface IPlayerAbilitiesProps {
   abilities: IAbility[]

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PlayerCharacteristicsItems from './Mutable/PlayerCharacteristicsItems';
 import PlayerImmutableCharacteristicsItems from './Immutable/PlayerImmutableCharacteristicsItems';
-import { ICharacteristic } from '../../../services/config';
+import { ICharacteristic } from '../../../hooks/Characteristics/config';
 
 export interface IPlayerCharacteristicsProps {
   mutableCharacteristics: ICharacteristic[], 

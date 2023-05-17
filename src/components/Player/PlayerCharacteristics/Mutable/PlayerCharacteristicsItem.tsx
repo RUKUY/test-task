@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import { ICharacteristic } from '../../../../services/config'
-
+import { ICharacteristic } from '../../../../hooks/Characteristics/config'
 
 interface PlayerCharacteristicsItemProps {
   characteristic: ICharacteristic,

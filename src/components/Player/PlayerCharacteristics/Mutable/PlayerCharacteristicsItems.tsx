@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
 import PlayerCharacteristicsItem from './PlayerCharacteristicsItem'
-import { ICharacteristic } from '../../../../services/config'
+import { ICharacteristic } from '../../../../hooks/Characteristics/config'
 
 interface IPlayerCharacteristicsItemsProps {
   characteristics: ICharacteristic[],

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
 import { PlayerAbilities, PlayerCharacteristics } from './PlayerMenu';
-import { ICharacteristic } from '../../services/config';
-import { IAbility } from '../../services/Abilities/config';
+import { ICharacteristic } from '../../hooks/Characteristics/config';
+import { IAbility } from '../../hooks/Abilities/config';
 
 interface IPlayerMenuRightSideProps {
     mutableCharacteristics: ICharacteristic[], 

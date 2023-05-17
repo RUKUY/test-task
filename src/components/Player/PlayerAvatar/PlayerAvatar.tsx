@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import playerlow from '../../../assets/playerLow.png'
 import playerMiddle from '../../../assets/playerMiddle.png'
 import playerHigh from '../../../assets/playerHigh.png'
-import { ICharacteristic } from '../../../services/config';
-import { ISavePlayer } from '../../../services/ImportExport';
+import { ICharacteristic } from '../../../hooks/Characteristics/config';
+import { ISavePlayer } from '../../../hooks/ImportExport';
 
 
 export interface IPlayerAvatarProps {
@@ -15,8 +15,6 @@ export interface IPlayerAvatarProps {
   savePlayer: (save?: ISavePlayer) => void
   handleExport: () => void 
   handleFileUpload: (event: React.ChangeEvent<HTMLInputElement>) => void
-
-
 }
 
 export const PlayerAvatar = (props: IPlayerAvatarProps) => {
@@ -40,6 +38,10 @@ export const PlayerAvatar = (props: IPlayerAvatarProps) => {
   const invokeSave = () => {
     props.savePlayer();
   }
+  const exitPlayer = () => {
+    localStorage.removeItem('savedPlayer');
+    document.location.reload();
+  }
   
   return (
     <div className='half-container avatar'>
@@ -53,6 +55,9 @@ export const PlayerAvatar = (props: IPlayerAvatarProps) => {
         <button id='save-btn' className='btn small transp' onClick={invokeExport} title='Загрузить персонажа'>
           <input id="export-input" type="file" style={{ display: 'none' }} onChange={props.handleFileUpload}/>
           <i className="fa-solid fa-file-import"></i>
+        </button>
+        <button id='save-btn' className='btn small transp' onClick={exitPlayer} title='Закрыть персонажа'>
+          <i className="fa-solid fa-xmark"></i>
         </button>
       </div>
 

@@ -1,14 +1,15 @@
 
 @font-face {
+    font-weight: 500;
     font-family: 'Fritz Quadrata Cyrillic';
-    src: url('../src/assets/fonts/fritz-quadrata-cyrillic.ttf');
+    src: url('fonts/fritz-quadrata-cyrillic.ttf');
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Fritz Quadrata Cyrillic', arial;
+    font-family: Fritz Quadrata Cyrillic, arial;
 }
 
 hr {
